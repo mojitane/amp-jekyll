@@ -11,8 +11,9 @@ module Jekyll
       self.process(@name)
       
       
-      postlayout = '-' + post.data['layout'] || ''
-      amplayout = 'amp' + post.data['layout'] + ".html"
+      #postlayout = '-' + post.data['layout'] || ''
+      #amplayout = 'amp' + post.data['layout'] + ".html"
+      amplayout = 'amp.html'
       
       self.read_yaml(File.join(base, '_layouts'), amplayout)
       self.content               = post.content
