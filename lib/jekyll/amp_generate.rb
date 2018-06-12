@@ -13,7 +13,6 @@ module Jekyll
       
       postlayout = '-' + layout
       amplayout = 'amp' + postlayout + ".html"
-      #amplayout = 'amp.html'
       
       self.read_yaml(File.join(base, '_layouts'), amplayout)
       self.content               = post.content
