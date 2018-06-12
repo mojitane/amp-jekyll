@@ -1,7 +1,7 @@
 module Jekyll
   # Defines the base class of AMP posts
   class AmpPost < Jekyll::Page
-    def initialize(site, base, dir, post)
+    def initialize(site, base, dir, post, layout)
       @site = site
       @base = base
       @dir = dir
@@ -11,8 +11,8 @@ module Jekyll
       self.process(@name)
       
       
-      postlayout = '-' + post.data['layout'] || ''
-      amplayout = 'amp' + post.data['layout'] + ".html"
+      postlayout = '-' + layout
+      amplayout = 'amp' + postlayout + ".html"
       #amplayout = 'amp.html'
       
       self.read_yaml(File.join(base, '_layouts'), amplayout)
@@ -39,7 +39,7 @@ module Jekyll
       dir = site.config['ampdir'] || 'amp'
       site.posts.docs.each do |post|
         next if post.data['skip_amp'] == true
-        site.pages << AmpPost.new(site, site.source, File.join(dir, post.id), post)
+        site.pages << AmpPost.new(site, site.source, File.join(dir, post.id), post, post.data['layout'])
       end
     end
   end
