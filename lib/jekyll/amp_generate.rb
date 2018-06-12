@@ -9,7 +9,12 @@ module Jekyll
       @url = dir
       @name = 'index.html'
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'amp-product.html')
+      
+      
+      postlayout = '-' + post.data['layout'] || ''
+      amplayout = 'amp' + post.data['layout'] + ".html"
+      
+      self.read_yaml(File.join(base, '_layouts'), amplayout)
       self.content               = post.content
       self.data['body']          = (Liquid::Template.parse post.content).render site.site_payload
 
